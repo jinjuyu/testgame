@@ -1,5 +1,7 @@
 /*
 흠 메인 렌더링 쓰레드를 메인 쓰레드 말고 다른 쓰레드에서 돌리면 빠르다는 추측이 가능하다.
+텍스트 출력은 윈도우즈 api를 이용하여 백버퍼에 렌더링 후에 비트맵을 읽어서 텍스쳐에 입력한다.
+딱히 어려운 건 별로 없는듯
 
 *		This Code Was Created By Jeff Molofee 2000
 *		A HUGE Thanks To Fredric Echols For Cleaning Up
