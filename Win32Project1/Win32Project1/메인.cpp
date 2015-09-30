@@ -9,9 +9,10 @@
 */
 
 #include <windows.h>		// Header File For Windows
+#include "GL\glew.h"
+#include "GL\wglew.h"
 #include <gl\gl.h>			// Header File For The OpenGL32 Library
 #include <gl\glu.h>			// Header File For The GLu32 Library
-
 
 HDC			hDC = NULL;		// Private GDI Device Context
 HGLRC		hRC = NULL;		// Permanent Rendering Context
@@ -413,7 +414,28 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 	MSG		msg;									// Windows Message Structure
 	BOOL	done = FALSE;								// Bool Variable To Exit Loop
 
-														// Ask The User Which Screen Mode They Prefer
+	GLenum err = glewInit();
+
+	/*
+	if (GLEW_ARB_vertex_program)
+	{
+	/* It is safe to use the ARB_vertex_program extension here. *
+	glGenProgramsARB(...);
+}
+In GLEW 1.0.x, a global structure was used for this task.To ensure binary compatibility between releases, the struct was replaced with a set of variables.
+You can also check for core OpenGL functionality.For example, to see if OpenGL 1.3 is supported, do the following :
+if (GLEW_VERSION_1_3)
+{
+	/* Yay! OpenGL 1.3 is supported! *
+}
+In general, you can check if GLEW_{ extension_name } or GLEW_VERSION_{ version } is true or false.
+It is also possible to perform extension checks from string input.Starting from the 1.3.0 release, use glewIsSupported to check if the required core or extension functionality is available :
+if (glewIsSupported("GL_VERSION_1_4  GL_ARB_point_sprite"))
+{
+	/* Great, we have OpenGL 1.4 + point sprites. *
+}
+*/
+	// Ask The User Which Screen Mode They Prefer
 	//if (MessageBox(NULL, "Would You Like To Run In Fullscreen Mode?", "Start FullScreen?", MB_YESNO | MB_ICONQUESTION) == IDNO)
 	{
 		fullscreen = FALSE;							// Windowed Mode
